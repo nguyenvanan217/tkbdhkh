@@ -66,17 +66,19 @@
                 justify-content: center;
                 gap: 8px;
                 color: white;
-                background: rgba(59, 130, 246, 0.9);
-                padding: 8px 16px;
+                background: rgba(59, 130, 246, 0.95);
+                padding: 10px 20px;
                 border-radius: 20px;
-                position: sticky;
+                position: fixed;
                 bottom: 20px;
                 left: 50%;
                 transform: translateX(-50%);
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
                 z-index: 10;
                 font-weight: 500;
-                margin-top: -40px;
+                backdrop-filter: blur(8px);
+                width: auto;
+                max-width: 90%;
             }
 
             .scroll-indicator svg {
@@ -103,6 +105,77 @@
             .scroll-indicator {
                 animation: pulse 2s infinite;
             }
+
+            /* Style cho thông báo điện thoại */
+            .phone-notice {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+                padding: 16px;
+                background: linear-gradient(135deg, #3b82f6, #2563eb);
+                border-radius: 12px;
+                color: white;
+                box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+                text-align: center;
+                margin: 16px 0;
+                position: relative;
+                z-index: 20;
+                line-height: 1.4;
+            }
+
+            .phone-notice .main-text {
+                font-size: 1rem;
+                font-weight: 500;
+                letter-spacing: 0.2px;
+            }
+
+            .phone-notice .main-text:first-child {
+                font-size: 1.2rem;
+                font-weight: 600;
+            }
+
+            /* Ẩn thông báo trên desktop */
+            @media (min-width: 769px) {
+
+                .phone-notice,
+                .scroll-indicator {
+                    display: none;
+                }
+            }
+
+            /* Style cho nội dung trong td */
+            .responsive-table td {
+                white-space: normal !important; /* Ghi đè white-space: nowrap */
+                min-width: 200px; /* Đảm bảo ô có độ rộng tối thiểu */
+            }
+
+            /* Style cho text trong td */
+            .cell-content {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .cell-content .subject {
+                font-size: 0.9rem;
+                line-height: 1.2;
+                word-wrap: break-word;
+            }
+
+            .cell-content .teacher {
+                font-size: 0.85rem;
+                line-height: 1.2;
+            }
+
+            .cell-content .time {
+                font-size: 0.8rem;
+            }
+
+            /* Điều chỉnh responsive-table */
+            .responsive-table {
+                white-space: normal;
+            }
         }
 
         @media (min-width: 769px) {
@@ -117,6 +190,18 @@
     <h1 class="text-3xl text-blue-500 font-bold text-center my-4 px-4 sm:px-0">Thời Khóa Biểu Của An</h1>
     <div class="container mx-auto px-4 sm:px-0">
         <div class="responsive-table">
+            <div class="phone-notice">
+                <span class="main-text">👋 Xin chào!</span>
+                <span class="main-text">An thấy bạn đang sử dụng điện thoại để xem thời khóa biểu.</span>
+            </div>
+            <div class="scroll-indicator">
+                <span class="sub-text">Để xem tốt nhất, hãy trượt ngang bảng thời khóa biểu nhé! 👉</span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+            </div>
             <table class="w-full border-collapse border border-gray-300 min-w-[768px]">
                 <!-- Header Row -->
                 <tr class="bg-gray-200">
@@ -135,17 +220,17 @@
                 </tr>
                 <tr>
                     <td class="border border-gray-300 p-2 h-40">
-                        <div class="flex flex-col h-full">
-                            <p class="text-lg font-bold">Pháp luật Việt Nam đại cương - Nhóm 2</p>
-                            <p class="text-blue-500 font-bold">Giảng viên: Nguyễn Thị Vân Anh</p>
-                            <p class="font-bold text-gray-500">Tiết: 3 - 4</p>
+                        <div class="cell-content">
+                            <p class="subject text-lg font-bold">Pháp luật Việt Nam đại cương - Nhóm 2</p>
+                            <p class="teacher text-blue-500 font-bold">Giảng viên: Nguyễn Thị Vân Anh</p>
+                            <p class="time font-bold text-gray-500">Tiết: 3 - 4</p>
                         </div>
                     </td>
                     <td class="border border-gray-300 p-2 h-40">
-                        <div class="flex flex-col h-full">
-                            <p class="text-lg font-bold">Kỹ nghệ phần mềm - Nhóm 5</p>
-                            <p class="text-blue-500 font-bold">Giảng viên: Lê Văn Hòa (1985)</p>
-                            <p class="font-bold text-gray-500">Tiết: 1 - 3</p>
+                        <div class="cell-content">
+                            <p class="subject text-lg font-bold">Kỹ nghệ phần mềm - Nhóm 5</p>
+                            <p class="teacher text-blue-500 font-bold">Giảng viên: Lê Văn Hòa (1985)</p>
+                            <p class="time font-bold text-gray-500">Tiết: 1 - 3</p>
                         </div>
                     </td>
                     <td class="border border-gray-300 p-2 h-40"></td>
@@ -154,12 +239,11 @@
                     <td class="border border-gray-300 p-2 h-40"></td>
                     <td class="border border-gray-300 p-2 h-40"></td>
                     <td class="border border-gray-300 p-2 h-40">
-                        <div class="flex flex-col h-full">
-                            <p class="text-lg font-bold">Thực tập viết niên luận - Nhóm 17</p>
-                            <p class="text-blue-500 font-bold">Giảng viên: Nguyễn Ngọc Thủy (1990)</p>
-                            <p class="font-bold text-gray-500">Tiết: 1 - 1</p> <span class="text-red-500">(Chưa Xác
-                                Định-
-                                khoảng tháng 6 học)</span>
+                        <div class="cell-content">
+                            <p class="subject text-lg font-bold">Thực tập viết niên luận - Nhóm 17</p>
+                            <p class="teacher text-blue-500 font-bold">Giảng viên: Nguyễn Ngọc Thủy (1990)</p>
+                            <p class="time font-bold text-gray-500">Tiết: 1 - 1</p>
+                            <span class="text-red-500">(Chưa Xác Định - khoảng tháng 6 học)</span>
                         </div>
                     </td>
                 </tr>
@@ -173,20 +257,20 @@
 
                     </td>
                     <td class="border border-gray-300 p-2 h-40">
-                        <div class="flex flex-col h-full">
-                            <p class="text-lg font-bold">Quản trị dự án phần mềm - Nhóm 3</p>
-                            <p class="text-blue-500 font-bold">Giảng viên: Nguyễn Mậu Hân (Only Hân)</p>
-                            <p class="font-bold text-gray-500">Tiết: 6 - 8</p>
+                        <div class="cell-content">
+                            <p class="subject text-lg font-bold">Quản trị dự án phần mềm - Nhóm 3</p>
+                            <p class="teacher text-blue-500 font-bold">Giảng viên: Nguyễn Mậu Hân (Only Hân)</p>
+                            <p class="time font-bold text-gray-500">Tiết: 6 - 8</p>
                         </div>
                     </td>
                     <td class="border border-gray-300 p-2 h-40">
 
                     </td>
                     <td class="border border-gray-300 p-2 h-40">
-                        <div class="flex flex-col h-full">
-                            <p class="text-lg font-bold">XML và ứng dụng - Nhóm 4</p>
-                            <p class="text-blue-500 font-bold">Giảng viên: Nguyễn Dũng</p>
-                            <p class="font-bold text-gray-500">Tiết: 5 - 7</p>
+                        <div class="cell-content">
+                            <p class="subject text-lg font-bold">XML và ứng dụng - Nhóm 4</p>
+                            <p class="teacher text-blue-500 font-bold">Giảng viên: Nguyễn Dũng</p>
+                            <p class="time font-bold text-gray-500">Tiết: 5 - 7</p>
                         </div>
                     </td>
                     <td class="border border-gray-300 p-2 h-40">
@@ -208,10 +292,10 @@
                     <td class="border border-gray-300 p-2 h-40"></td>
                     <td class="border border-gray-300 p-2 h-40"></td>
                     <td class="border border-gray-300 p-2 h-40">
-                        <div class="flex flex-col h-full">
-                            <p class="text-lg font-bold">Lịch sử Đảng cộng sản Việt Nam - Nhóm 13</p>
-                            <p class="text-blue-500 font-bold">Gi���ng viên: Nguyễn Thị Hiền</p>
-                            <p class="font-bold text-gray-500">Tiết: 9 - 11</p>
+                        <div class="cell-content">
+                            <p class="subject text-lg font-bold">Lịch sử Đảng cộng sản Việt Nam - Nhóm 13</p>
+                            <p class="teacher text-blue-500 font-bold">Giảng viên: Nguyễn Thị Hiền</p>
+                            <p class="time font-bold text-gray-500">Tiết: 9 - 11</p>
                         </div>
                     </td>
                     <td class="border border-gray-300 p-2 h-40"></td>
@@ -220,15 +304,6 @@
                     <td class="border border-gray-300 p-2 h-40"></td>
                 </tr>
             </table>
-            <div class="scroll-indicator">
-                <span>Tôi biết bạn đang dùng điện thoại ?</span>
-                <span>Trượt sang để xem thêm</span>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                    class="w-5 h-5">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-            </div>
         </div>
     </div>
 </body>
