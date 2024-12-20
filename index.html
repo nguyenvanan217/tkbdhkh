@@ -135,15 +135,6 @@
                 font-weight: 600;
             }
 
-            /* Ẩn thông báo trên desktop */
-            @media (min-width: 769px) {
-
-                .phone-notice,
-                .scroll-indicator {
-                    display: none;
-                }
-            }
-
             /* Style cho nội dung trong td */
             .responsive-table td {
                 white-space: normal !important; /* Ghi đè white-space: nowrap */
@@ -178,9 +169,11 @@
             }
         }
 
+        /* Tách media query cho việc ẩn thông báo ra ngoài */
         @media (min-width: 769px) {
+            .phone-notice,
             .scroll-indicator {
-                display: none;
+                display: none !important; /* Thêm !important để đảm bảo luôn ẩn trên desktop */
             }
         }
     </style>
