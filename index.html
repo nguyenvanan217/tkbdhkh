@@ -67,7 +67,7 @@
                 gap: 8px;
                 color: white;
                 background: rgba(59, 130, 246, 0.95);
-                padding: 10px 20px;
+                padding: calc(8px + 0.5vw) calc(16px + 1vw);
                 border-radius: 20px;
                 position: fixed;
                 bottom: 20px;
@@ -79,6 +79,8 @@
                 backdrop-filter: blur(8px);
                 width: auto;
                 max-width: 90%;
+                font-size: calc(0.7rem + 1vw);
+                transition: all 0.3s ease;
             }
 
             .scroll-indicator svg {
@@ -167,6 +169,40 @@
             .responsive-table {
                 white-space: normal;
             }
+
+            /* Responsive text size cho các màn hình khác nhau */
+            @media (max-width: 360px) {
+                .scroll-indicator {
+                    font-size: 0.8rem;
+                    padding: 8px 12px;
+                }
+                .scroll-indicator svg {
+                    width: 16px;
+                    height: 16px;
+                }
+            }
+
+            @media (min-width: 361px) and (max-width: 480px) {
+                .scroll-indicator {
+                    font-size: 0.9rem;
+                    padding: 10px 16px;
+                }
+                .scroll-indicator svg {
+                    width: 18px;
+                    height: 18px;
+                }
+            }
+
+            @media (min-width: 481px) and (max-width: 768px) {
+                .scroll-indicator {
+                    font-size: 1rem;
+                    padding: 12px 20px;
+                }
+                .scroll-indicator svg {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
         }
 
         /* Tách media query cho việc ẩn thông báo ra ngoài */
@@ -188,9 +224,9 @@
                 <span class="main-text">An thấy bạn đang sử dụng điện thoại để xem thời khóa biểu.</span>
             </div>
             <div class="scroll-indicator">
-                <span class="sub-text">Để xem tốt nhất, hãy trượt ngang bảng thời khóa biểu nhé! 👉</span>
+                <span class="sub-text whitespace-normal text-center">Để xem tốt nhất, hãy trượt ngang bảng thời khóa biểu nhé! 👉</span>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                    class="w-5 h-5">
+                    class="w-5 h-5 flex-shrink-0">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
